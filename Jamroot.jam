@@ -1,0 +1,22 @@
+import testing ;
+import os ;
+import flex ;
+
+use-project /boost : [ os.environ BOOST_ROOT ] ;
+
+lib ssl ;
+lib crypto ;
+
+exe csv_parser
+    :
+    csv_parser.l
+    :
+    <include>.
+    <library>/boost/system//boost_system
+    <library>ssl
+    <library>crypto
+    <cxxflags>-Wfatal-errors
+    <threading>multi
+    <toolset>gcc:<cxxflags>-std=gnu++0x
+    <toolset>clang:<cxxflags>-std=c++11
+    ;
